@@ -1,299 +1,54 @@
 <template>
-  <!DOCTYPE html>
-  <html lang="sk">
-  <Head></Head>
-  <body>
-  <Header></Header>
-  <!-- Obsah stránky -->
-  <div class="container">
+  <div>
+    <Header active="destinacie"></Header>
     <br><br><br><br><br><br><br>
-    <!-- Úvodný text -->
-    <div class="text-center uvodny_text">
-      <h1 id="nadpis" style="font-weight: bold;">Destinácie</h1>
-    </div>
-    <br>
-    <!-- Aktuálne destinácie -->
-    <br><br>
-    <div>
+    <div class="container">
+      <HeadingText nazov="Destinácie"/>
+      <br><br>
       <h1 class="aktualne_destinacie">Aktuálne destinácie:</h1>
+      <Destination
+          v-for="destination in destinations"
+          :key="destination.id"
+          :id="destination.id"
+          :name="destination.name"
+          :image="destination.image"
+          :prices="destination.prices"
+      />
     </div>
-    <!-- Prvá destinácia - Bali -->
-    <div class="dest_pozadie">
-      <div class="dest">
-        <div>
-          <img :src="'../img/destinacie/img1.jpg'" class="img-thumbnail img-fluid dest_ob" alt="Bali">
-        </div>
-        <h1 class="nazov">Bali</h1>
-      </div>
-      <button class="accordion">Zobraziť detaily</button>
-      <div class="panel">
-        <!-- Detaily o destinácii -->
-        <ul class="list-group list-group-flush">
-          <!-- Cenové možnosti pre rôzny počet ľudí -->
-          <li class="list-group-item">
-            <span class="text_vlavo">All inclusive. Dovolenka pre 1. osobu</span><span class="text_vpravo">500€</span>
-          </li>
-          <li class="list-group-item">
-            <span class="text_vlavo">All inclusive. Dovolenka pre 2. ľudí</span><span class="text_vpravo">900€</span>
-          </li>
-          <li class="list-group-item">
-            <span class="text_vlavo">All inclusive. Dovolenka pre 3. ľudí</span><span class="text_vpravo">1350€</span>
-          </li>
-          <li class="list-group-item">
-            <span class="text_vlavo">All inclusive. Dovolenka pre 4. ľudí</span><span class="text_vpravo">1700€</span>
-          </li>
-          <li class="list-group-item">
-            <span class="text_vlavo">All inclusive. Dovolenka pre 5. ľudí</span><span class="text_vpravo">2100€</span>
-          </li>
-        </ul>
-        <!-- Formulár na zadanie počtu ľudí a tlačidlo na objednanie -->
-        <div class="justify-content-center" style="display: flex">
-          <div class="form-outline" style="width: 5.7rem; display: inline-block;" >
-            <label class="form-label" style="white-space: nowrap; margin: 0 auto;">Počet ľudí:</label>
-            <input value="1" min="1" max="5" type="number" class="form-control">
-          </div>
-          <button onclick="myalert()" class="btn btn-primary dest_tlacidlo">
-            Objednaj
-          </button>
-        </div>
-      </div>
-    </div>
-    <br>
-    <!-- Druhá destinácia - Egypt -->
-    <div class="dest_pozadie">
-      <div class="dest">
-        <div>
-          <img :src="'../img/destinacie/img2.jpg'" class="img-thumbnail img-fluid dest_ob" alt="Egypt">
-        </div>
-        <h1 class="nazov">Egypt</h1>
-      </div>
-      <button class="accordion">Zobraziť detaily</button>
-      <div class="panel">
-        <!-- Detaily o destinácii -->
-        <ul class="list-group list-group-flush">
-          <!-- Cenové možnosti pre rôzny počet ľudí -->
-          <li class="list-group-item">
-            <span class="text_vlavo">All incluzive. Dovolenka pre 1. osobu</span><span class="text_vpravo">450€</span>
-          </li>
-          <li class="list-group-item">
-            <span class="text_vlavo">All incluzive. Dovolenka pre 2. ľudí</span><span class="text_vpravo">800€</span>
-          </li>
-          <li class="list-group-item">
-            <span class="text_vlavo">All incluzive. Dovolenka pre 3. ľudí</span><span class="text_vpravo">1200€</span>
-          </li>
-          <li class="list-group-item">
-            <span class="text_vlavo">All incluzive. Dovolenka pre 4. ľudí</span><span class="text_vpravo">1500€</span>
-          </li>
-          <li class="list-group-item">
-            <span class="text_vlavo">All incluzive. Dovolenka pre 5. ľudí</span><span class="text_vpravo">1850€</span>
-          </li>
-        </ul>
-        <!-- Formulár na zadanie počtu ľudí a tlačidlo na objednanie -->
-        <div class="justify-content-center" style="display: flex">
-          <div class="form-outline" style="width: 5.7rem; display: inline-block;" >
-            <label class="form-label" style="white-space: nowrap; margin: 0 auto;">Počet ľudí:</label>
-            <input value="1" min="1" max="5" type="number" class="form-control">
-          </div>
-          <button onclick="myalert()" class="btn btn-primary dest_tlacidlo">
-            Objednaj
-          </button>
-        </div>
-
-      </div>
-    </div>
-    <br>
-    <!-- Tretia destinácia - Kanárske ostrovy -->
-    <div class="dest_pozadie">
-      <div class="dest">
-        <div>
-          <img :src="'../img/destinacie/img3.jpg'" class="img-thumbnail img-fluid dest_ob" alt="Kanárske ostrovy">
-        </div>
-        <h1 class="nazov">Kanárske ostrovy</h1>
-      </div>
-      <button class="accordion">Zobraziť detaily</button>
-      <div class="panel">
-        <!-- Detaily o destinácii -->
-        <ul class="list-group list-group-flush">
-          <!-- Cenové možnosti pre rôzny počet ľudí -->
-          <li class="list-group-item">
-            <span class="text_vlavo">All incluzive. Dovolenka pre 1. osobu</span><span class="text_vpravo">600€</span>
-          </li>
-          <li class="list-group-item">
-            <span class="text_vlavo">All incluzive. Dovolenka pre 2. ľudí</span><span class="text_vpravo">950€</span>
-          </li>
-          <li class="list-group-item">
-            <span class="text_vlavo">All incluzive. Dovolenka pre 3. ľudí</span><span class="text_vpravo">1400€</span>
-          </li>
-          <li class="list-group-item">
-            <span class="text_vlavo">All incluzive. Dovolenka pre 4. ľudí</span><span class="text_vpravo">1750€</span>
-          </li>
-          <li class="list-group-item">
-            <span class="text_vlavo">All incluzive. Dovolenka pre 5. ľudí</span><span class="text_vpravo">2200€</span>
-          </li>
-        </ul>
-        <!-- Formulár na zadanie počtu ľudí a tlačidlo na objednanie -->
-        <div class="justify-content-center" style="display: flex">
-          <div class="form-outline" style="width: 5.7rem; display: inline-block;" >
-            <label class="form-label" style="white-space: nowrap; margin: 0 auto;">Počet ľudí:</label>
-            <input value="1" min="1" max="5" type="number" class="form-control">
-          </div>
-          <button onclick="myalert()" class="btn btn-primary dest_tlacidlo">
-            Objednaj
-          </button>
-        </div>
-
-      </div>
-    </div>
-    <br>
-    <!-- Štvrtá destinácia - Cyprus -->
-    <div class="dest_pozadie">
-      <div class="dest">
-        <div>
-          <img :src="'../img/img5.jpg'" class="img-thumbnail img-fluid dest_ob" alt="Cyprus">
-        </div>
-        <h1 class="nazov">Cyprus</h1>
-      </div>
-      <button class="accordion">Zobraziť detaily</button>
-      <div class="panel">
-        <!-- Detaily o destinácii -->
-        <ul class="list-group list-group-flush">
-          <!-- Cenové možnosti pre rôzny počet ľudí -->
-          <li class="list-group-item">
-            <span class="text_vlavo">All incluzive. Dovolenka pre 1. osobu</span><span class="text_vpravo">700€</span>
-          </li>
-          <li class="list-group-item">
-            <span class="text_vlavo">All incluzive. Dovolenka pre 2. ľudí</span><span class="text_vpravo">1400€</span>
-          </li>
-          <li class="list-group-item">
-            <span class="text_vlavo">All incluzive. Dovolenka pre 3. ľudí</span><span class="text_vpravo">1950€</span>
-          </li>
-          <li class="list-group-item">
-            <span class="text_vlavo">All incluzive. Dovolenka pre 4. ľudí</span><span class="text_vpravo">2400€</span>
-          </li>
-          <li class="list-group-item">
-            <span class="text_vlavo">All incluzive. Dovolenka pre 5. ľudí</span><span class="text_vpravo">2800€</span>
-          </li>
-        </ul>
-        <!-- Formulár na zadanie počtu ľudí a tlačidlo na objednanie -->
-        <div class="justify-content-center" style="display: flex">
-          <div class="form-outline" style="width: 5.7rem; display: inline-block;" >
-            <label class="form-label" style="white-space: nowrap; margin: 0 auto;">Počet ľudí:</label>
-            <input value="1" min="1" max="5" type="number" class="form-control">
-          </div>
-          <button onclick="myalert()" class="btn btn-primary dest_tlacidlo">
-            Objednaj
-          </button>
-        </div>
-
-      </div>
-    </div>
-    <br>
-    <!-- Piata destinácia - Hawai -->
-    <div class="dest_pozadie">
-      <div class="dest">
-        <div>
-          <img :src="'../img/destinacie/img4.jpg'" class="img-thumbnail img-fluid dest_ob" alt="Hawai">
-        </div>
-        <h1 class="nazov">Hawai</h1>
-      </div>
-      <button class="accordion">Zobraziť detaily</button>
-      <div class="panel">
-        <!-- Detaily o destinácii -->
-        <ul class="list-group list-group-flush">
-          <!-- Cenové možnosti pre rôzny počet ľudí -->
-          <li class="list-group-item">
-            <span class="text_vlavo">All incluzive. Dovolenka pre 1. osobu</span><span class="text_vpravo">1000€</span>
-          </li>
-          <li class="list-group-item">
-            <span class="text_vlavo">All incluzive. Dovolenka pre 2. ľudí</span><span class="text_vpravo">1800€</span>
-          </li>
-          <li class="list-group-item">
-            <span class="text_vlavo">All incluzive. Dovolenka pre 3. ľudí</span><span class="text_vpravo">2600€</span>
-          </li>
-          <li class="list-group-item">
-            <span class="text_vlavo">All incluzive. Dovolenka pre 4. ľudí</span><span class="text_vpravo">3400€</span>
-          </li>
-          <li class="list-group-item">
-            <span class="text_vlavo">All incluzive. Dovolenka pre 5. ľudí</span><span class="text_vpravo">4100€</span>
-          </li>
-        </ul>
-        <!-- Formulár na zadanie počtu ľudí a tlačidlo na objednanie -->
-        <div class="justify-content-center" style="display: flex">
-          <div class="form-outline" style="width: 5.7rem; display: inline-block;" >
-            <label class="form-label" style="white-space: nowrap; margin: 0 auto;">Počet ľudí:</label>
-            <input value="1" min="1" max="5" type="number" class="form-control">
-          </div>
-          <button onclick="myalert()" class="btn btn-primary dest_tlacidlo">
-            Objednaj
-          </button>
-        </div>
-
-      </div>
-    </div>
-    <br>
-    <!-- Šiesta destinácia - Maledivy -->
-    <div class="dest_pozadie">
-      <div class="dest">
-        <div>
-          <img :src="'../img/img6.jpg'" class="img-thumbnail img-fluid dest_ob" alt="Maledivy">
-        </div>
-        <h1 class="nazov">Malorka</h1>
-      </div>
-      <button class="accordion">Zobraziť detaily</button>
-      <div class="panel">
-        <!-- Detaily o destinácii -->
-        <ul class="list-group list-group-flush">
-          <!-- Cenové možnosti pre rôzny počet ľudí -->
-          <li class="list-group-item">
-            <span class="text_vlavo">All incluzive. Dovolenka pre 1. osobu</span><span class="text_vpravo">350€</span>
-          </li>
-          <li class="list-group-item">
-            <span class="text_vlavo">All incluzive. Dovolenka pre 2. ľudí</span><span class="text_vpravo">600€</span>
-          </li>
-          <li class="list-group-item">
-            <span class="text_vlavo">All incluzive. Dovolenka pre 3. ľudí</span><span class="text_vpravo">1000€</span>
-          </li>
-          <li class="list-group-item">
-            <span class="text_vlavo">All incluzive. Dovolenka pre 4. ľudí</span><span class="text_vpravo">1600€</span>
-          </li>
-          <li class="list-group-item">
-            <span class="text_vlavo">All incluzive. Dovolenka pre 5. ľudí</span><span class="text_vpravo">2100€</span>
-          </li>
-        </ul>
-        <!-- Formulár na zadanie počtu ľudí a tlačidlo na objednanie -->
-        <div class="justify-content-center" style="display: flex">
-          <div class="form-outline" style="width: 5.7rem; display: inline-block;" >
-            <label class="form-label" style="white-space: nowrap; margin: 0 auto;">Počet ľudí:</label>
-            <input value="1" min="1" max="5" type="number" class="form-control">
-          </div>
-          <button onclick="myalert()" class="btn btn-primary dest_tlacidlo">
-            Objednaj
-          </button>
-        </div>
-      </div>
-    </div>
-    <br>
+    <Footer></Footer>
   </div>
-
-  <Footer></Footer>
-  </body>
-  </html>
 </template>
-
-<style>
-body {
-  background: radial-gradient(circle, rgba(3,124,166,1) 0%, rgba(38,129,208,1) 60%, rgba(0,212,255,1) 100%);
-}
-</style>
 
 <script lang="ts">
 import Header from "@/components/Header.vue";
-import Head from "@/components/Head.vue";
 import Footer from "@/components/Footer.vue";
+import Destination from "@/components/DestinationCard.vue";
+import HeadingText from "@/components/HeadingText.vue";
 
 export default {
-  components: { Footer, Head, Header },
+  components: {
+    Header,
+    Footer,
+    Destination,
+    HeadingText
+  },
+  data() {
+    return {
+      destinations: [
+        { id: "bali", name: "Bali", image: "../img/destinacie/img1.jpg", prices: [500, 900, 1350, 1700, 2100] },
+        { id: "egypt", name: "Egypt", image: "../img/destinacie/img2.jpg", prices: [450, 800, 1200, 1500, 1850] },
+        { id: "kanarske", name: "Kanárske ostrovy", image: "../img/destinacie/img3.jpg", prices: [600, 950, 1400, 1750, 2200] },
+        { id: "cyprus", name: "Cyprus", image: "../img/img5.jpg", prices: [700, 1400, 1950, 2400, 2800] },
+        { id: "hawai", name: "Hawai", image: "../img/destinacie/img4.jpg", prices: [1000, 1800, 2600, 3400, 4100] },
+        { id: "malorka", name: "Malorka", image: "../img/img6.jpg", prices: [350, 600, 1000, 1600, 2100] },
+      ],
+    };
+  },
 };
 </script>
 
-
+<style>
+body {
+  background: radial-gradient(circle, rgba(3, 124, 166, 1) 0%, rgba(38, 129, 208, 1) 60%, rgba(0, 212, 255, 1) 100%);
+}
+</style>

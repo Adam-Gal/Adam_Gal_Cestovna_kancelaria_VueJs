@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import UvodnaView from '@/views/UvodnaView.vue';
+import UvodnaView from '@/views/HomeView.vue';
 import DestinationView from "@/views/DestinationView.vue";
-import SluzbyView from "@/views/SluzbyView.vue";
-import KontaktyView from "@/views/KontaktView.vue";
+import SluzbyView from "@/views/ServicesView.vue";
+import KontaktyView from "@/views/ContactView.vue";
+import ShoppingCartView from "@/views/ShoppingCartView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,6 +29,11 @@ const router = createRouter({
       path: '/kontakt',
       name: 'kontakt',
       component: KontaktyView,
+    },
+    {
+      path: '/kosik',
+      name: 'kosik',
+      component: ShoppingCartView,
     },
   ],
   scrollBehavior(to, from, savedPosition) {
