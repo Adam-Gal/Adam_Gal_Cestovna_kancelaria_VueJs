@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- Articles Section -->
     <div class="clanok" v-for="(article, index) in articles" :key="index">
       <div>
         <img :src="article.image" style="border-radius: 5px;" class="img-thumbnail img-fluid" :alt="article.title" loading="lazy">

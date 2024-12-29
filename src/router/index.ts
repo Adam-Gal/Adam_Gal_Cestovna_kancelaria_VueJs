@@ -4,6 +4,7 @@ import DestinationView from "@/views/DestinationView.vue";
 import SluzbyView from "@/views/ServicesView.vue";
 import KontaktyView from "@/views/ContactView.vue";
 import ShoppingCartView from "@/views/ShoppingCartView.vue";
+import ThankYouView from "@/views/ThankYouView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -35,13 +36,23 @@ const router = createRouter({
       name: 'kosik',
       component: ShoppingCartView,
     },
+    {
+      path: '/thankyou/:text/:link',
+      name: 'thankyou',
+      component: () => import('@/views/ThankYouView.vue'),
+      props: true,
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'notFound',
+      component: () => import('@/views/404.vue'),
+    }
+
   ],
   scrollBehavior(to, from, savedPosition) {
-    // Ak je uložená pozícia (napr. po návrate späť), použije sa táto
     if (savedPosition) {
       return savedPosition;
     } else {
-      // Inak vždy scrolluje na vrch
       return { top: 0 };
     }
   },

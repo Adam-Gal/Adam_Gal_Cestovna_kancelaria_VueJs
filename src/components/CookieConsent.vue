@@ -12,28 +12,28 @@
 export default {
   data() {
     return {
-      closed: false, // Track whether the consent has been closed
-      hasConsent: this.checkConsent(), // Track if consent is already given
+      closed: false,
+      hasConsent: this.checkConsent(),
     };
   },
   methods: {
     handleAccept() {
-      this.setConsent(true);  // Store the user's consent in localStorage
-      this.closed = true;      // Mark the consent message as closed
+      this.setConsent(true);
+      this.closed = true;
     },
 
     handleDeny() {
-      this.setConsent(false); // Store that user denied consent in localStorage
-      this.closed = true;      // Mark the consent message as closed
+      this.setConsent(false);
+      this.closed = true;
     },
 
     setConsent(consent: boolean) {
-      localStorage.setItem('cookieConsent', consent.toString()); // Save consent to localStorage
-      this.hasConsent = consent; // Update consent state
+      localStorage.setItem('cookieConsent', consent.toString());
+      this.hasConsent = consent;
     },
 
     checkConsent() {
-      return localStorage.getItem('cookieConsent') === 'true'; // Check for saved consent in localStorage
+      return localStorage.getItem('cookieConsent') === 'true';
     },
   },
 };

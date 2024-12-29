@@ -38,9 +38,7 @@
               <label class="form-label" style="white-space: nowrap; margin: 0 auto;">Počet ľudí:</label>
               <input v-model="people" min="1" max="5" type="number" class="form-control" />
             </div>
-            <router-link to="/sluzby" class="btn btn-primary dest_tlacidlo">
-              Objednaj
-            </router-link>
+            <button @click="saveSelectedDestination" class="btn btn-success dest_tlacidlo">Rezervovať a vybrať služby</button>
           </div>
         </div>
       </div>
@@ -52,22 +50,40 @@
 <script lang="ts">
 export default {
   props: {
-    id: String,
-    name: String,
+    id: {
+      type: String,
+      default: '0',
+    },
+    name: {
+      type: String,
+      default: 'Neznáma destinácia',
+    },
     image: String,
-    prices: Array
+    prices: {
+      type: Array,
+      default: () => [],
+    },
   },
   data() {
     return {
       people: 1,
     };
   },
+  methods: {
+    saveSelectedDestination() {
+      const prices = Array.isArray(this.prices) ? this.prices : [];
+      const selectedPrice = prices[this.people - 1] || prices[0] || 0;
+      const finalPrice = typeof selectedPrice === 'number' ? selectedPrice : 0;
+
+      localStorage.setItem('selectedDestination', JSON.stringify({
+        id: this.id,
+        name: this.name,
+        price: finalPrice,
+        people: this.people,
+      }));
+
+      this.$router.push({ name: 'sluzby' });
+    },
+  },
 };
 </script>
-
-<style scoped>
-.dest_ob {
-  width: 100%;
-  height: auto;
-}
-</style>
