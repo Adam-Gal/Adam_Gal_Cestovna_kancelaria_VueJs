@@ -3,9 +3,7 @@
     <Header active="kontakt"></Header>
     <div class="container">
       <br><br><br><br><br><br><br>
-      <HeadingText
-          nazov="Kontakt"
-      />
+      <HeadingText nazov="Kontakt"></HeadingText>
       <br><br><br><br><br>
       <ContactSection></ContactSection>
       <br><br><br>

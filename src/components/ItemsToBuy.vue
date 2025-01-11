@@ -59,7 +59,7 @@
 </template>
 
 <script lang="ts">
-import { ref, nextTick } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useCartStore } from '@/stores/cart';
 import { useRouter } from 'vue-router';
 
@@ -76,17 +76,21 @@ export default {
       phone: '',
     });
 
-    const clearCart = async () => {
-      cartStore.clearCart();
-      await nextTick();
+    onMounted(() => {
+      cartStore.loadCartFromLocalStorage();
       cartItems.value = cartStore.items;
+    });
+
+    const clearCart = () => {
+      cartStore.clearCart();
+      cartItems.value = [];
     };
 
     const submitOrder = () => {
       showOrderForm.value = false;
       clearCart();
       personalInfo.value = { firstName: '', lastName: '', email: '', phone: '' };
-      router.push({ name: 'thankyou', params: { text: "Ďakujeme za objednávku", link: '/kosik' } });
+      router.push({ name: 'thankyou', params: { text: 'Ďakujeme za objednávku', link: '/kosik' } });
     };
 
     return {

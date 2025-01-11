@@ -14,7 +14,7 @@
       <tr v-for="(service, index) in services" :key="index">
         <th class="align-middle" scope="row">
           {{ service.name }}<br>
-          {{ service.cena }}€
+          {{ service.price }}€
         </th>
         <td class="align-middle">
           <ul>
@@ -45,25 +45,21 @@
 
 <script lang="ts">
 import { useCartStore } from '@/stores/cart';
+import { defineComponent } from 'vue';
+import { useRouter } from 'vue-router'; // Import useRouter
 
-export default {
+export interface Service {
+  name: string;
+  details: string[];
+  price: number;
+  isSelected: boolean;
+}
+
+export default defineComponent({
   data() {
     return {
       hasConsent: localStorage.getItem("cookieConsent") === "true",
-      services: [
-        { name: "Rezervácia leteniek", details: ["Medzinárodné lety", "Vnútroštátne lety", "Last-minute ponuky"], cena: 20, isSelected: false },
-        { name: "Rezervácia ubytovania", details: ["Hotely", "Apartmány", "Hostely", "Rezervácia dovolenkových domov"], cena: 20, isSelected: false },
-        { name: "Zabezpečenie prepravy", details: ["Autopožičovňa", "Transfer z letiska", "MHD v cieľovej destinácii"], cena: 35, isSelected: false },
-        { name: "Turistické balíčky", details: ["Výlety a exkurzie", "Skupinové a individuálne zájazdy", "Kultúrne a dobrodružné programy"], cena: 250, isSelected: false },
-        { name: "Dodatočné poistenie", details: ["Cestovné poistenie", "Zdravotné poistenie", "Poistenie zrušenia"], cena: 100, isSelected: false },
-        { name: "Víza a iné formality", details: ["Pomoc s vízami", "Iné povinné formality"], cena: 50, isSelected: false },
-        { name: "Technická podpora", details: ["24/7 zákaznícka podpora", "Mobilné aplikácie a informačné systémy pre zákazníkov"], cena: 20, isSelected: false },
-        { name: "Event Management", details: ["Organizácia konferencií a podujatí", "Team-building akcie", "Svadobné plánovanie destinácií"], cena: 150, isSelected: false },
-        { name: "Jazykové služby", details: ["Priradenie sprievodcu v cudzom jazyku", "Preklady dokumentov", "Komunikačná asistencia"], cena: 280, isSelected: false },
-        { name: "Špeciálne služby pre firemných klientov", details: ["Organizácia firemných ciest a team-buildingov", "Zabezpečenie konferenčných priestorov"], cena: 150, isSelected: false },
-        { name: "Kultúrne zážitky", details: ["Rezervácie v reštauráciách", "Kultúrne podujatia a festivaly"], cena: 50, isSelected: false },
-        { name: "VIP služby", details: ["Prémiové lety a ubytovanie", "Exkluzívne zážitky a služby"], cena: 500, isSelected: false },
-      ],
+      services: [] as Service[],
       selectedDestination: JSON.parse(localStorage.getItem('selectedDestination') || '{}'),
     };
   },
@@ -72,7 +68,7 @@ export default {
       let total = this.selectedDestination.price || 0;
       this.services.forEach(service => {
         if (service.isSelected) {
-          total += service.cena;
+          total += service.price;
         }
       });
 
@@ -80,6 +76,15 @@ export default {
     },
   },
   methods: {
+    async fetchServices() {
+      try {
+        const response = await fetch('/src/data_output.json');
+        const data = await response.json();
+        this.services = data.services;
+      } catch (error) {
+        console.error('Chyba pri načítaní služieb:', error);
+      }
+    },
     toggleButton(index: number) {
       this.services[index].isSelected = !this.services[index].isSelected;
       if (this.hasConsent) this.saveServicesToCookies();
@@ -113,15 +118,17 @@ export default {
       });
 
       this.resetSelection();
-      this.$router.push({ name: 'kosik' });
+      const router = useRouter(); // Use the useRouter hook
+      router.push({ name: 'kosik' });
     },
     resetSelection() {
       localStorage.removeItem('selectedDestination');
       document.cookie = `selectedServices=[]; path=/;`;
     }
   },
-  mounted() {
+  async mounted() {
+    await this.fetchServices();
     if (this.hasConsent) this.loadServicesFromCookies();
-  },
-};
+  }
+});
 </script>

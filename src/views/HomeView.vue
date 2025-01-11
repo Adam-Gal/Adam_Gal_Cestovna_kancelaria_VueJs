@@ -29,7 +29,7 @@ import HeadingText from "@/components/HeadingText.vue";
 
 export default {
   components: { Header, Footer, HotDestinations, News, CookieConsent, HeadingText },
-};
+}
 </script>
 
 <style scoped>

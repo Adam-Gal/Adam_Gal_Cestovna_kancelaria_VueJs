@@ -42,16 +42,30 @@
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent, ref, onMounted } from 'vue';
+
+export default defineComponent({
   name: "Carousel",
-  data() {
+  setup() {
+    const images = ref<string[]>([]);
+
+    const fetchImages = async () => {
+      try {
+        const response = await fetch('/src/data_output.json');
+        const data = await response.json();
+        images.value = data['carousel_images'];
+      } catch (error) {
+        console.error('Chyba pri načítaní JSON súboru:', error);
+      }
+    };
+
+    onMounted(() => {
+      fetchImages();
+    });
+
     return {
-      images: [
-        "/img/kontakt/img1.jpg",
-        "/img/kontakt/img2.jpg",
-        "/img/kontakt/img3.jpg",
-      ],
+      images,
     };
   },
-};
+});
 </script>

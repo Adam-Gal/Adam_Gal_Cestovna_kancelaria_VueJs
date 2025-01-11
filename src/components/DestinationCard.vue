@@ -1,44 +1,46 @@
 <template>
-  <div class="accordion accordion-flush accordion_background" :id="id">
-    <div class="dest">
-      <div>
-        <img :src="image" class="img-thumbnail img-fluid dest_ob" :alt="name" />
+  <div>
+    <div v-for="destination in destinations" :key="destination.id" class="accordion accordion-flush accordion_background" :id="destination.id" style="margin-bottom: 15px">
+      <div class="dest">
+        <div>
+          <img :src="destination.image" class="img-thumbnail img-fluid dest_ob" :alt="destination.name" />
+        </div>
+        <h1 class="nazov">{{ destination.name }}</h1>
       </div>
-      <h1 class="nazov">{{ name }}</h1>
-    </div>
-    <div class="accordion-item rounded mt-2">
-      <h2 class="accordion-header rounded" :id="`heading-${id}`">
-        <button
-            class="accordion-button collapsed rounded"
-            style="text-align: center"
-            type="button"
-            data-bs-toggle="collapse"
-            :data-bs-target="`#collapse-${id}`"
-            aria-expanded="false"
-            :aria-controls="`collapse-${id}`"
+      <div class="accordion-item rounded mt-2">
+        <h2 class="accordion-header rounded" :id="`heading-${destination.id}`">
+          <button
+              class="accordion-button collapsed rounded"
+              style="text-align: center"
+              type="button"
+              data-bs-toggle="collapse"
+              :data-bs-target="`#collapse-${destination.id}`"
+              aria-expanded="false"
+              :aria-controls="`collapse-${destination.id}`"
+          >
+            Zobraziť detaily
+          </button>
+        </h2>
+        <div
+            :id="`collapse-${destination.id}`"
+            class="accordion-collapse collapse"
+            :aria-labelledby="`heading-${destination.id}`"
+            :data-bs-parent="`#${destination.id}`"
         >
-          Zobraziť detaily
-        </button>
-      </h2>
-      <div
-          :id="`collapse-${id}`"
-          class="accordion-collapse collapse"
-          :aria-labelledby="`heading-${id}`"
-          :data-bs-parent="`#${id}`"
-      >
-        <div class="accordion-body">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item" v-for="(price, index) in prices" :key="index">
-              <span class="text_vlavo">All inclusive. Dovolenka pre {{ index + 1 }}. {{ index === 0 ? 'osobu' : 'ľudí' }}</span>
-              <span class="text_vpravo">{{ price }}€</span>
-            </li>
-          </ul>
-          <div class="justify-content-center" style="display: flex">
-            <div class="form-outline" style="width: 5.7rem; display: inline-block;">
-              <label class="form-label" style="white-space: nowrap; margin: 0 auto;">Počet ľudí:</label>
-              <input v-model="people" min="1" max="5" type="number" class="form-control" />
+          <div class="accordion-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" v-for="(price, index) in destination.prices" :key="index">
+                <span class="text_vlavo">All inclusive. Dovolenka pre {{ index + 1 }}. {{ index === 0 ? 'osobu' : 'ľudí' }}</span>
+                <span class="text_vpravo">{{ price }}€</span>
+              </li>
+            </ul>
+            <div class="justify-content-center" style="display: flex">
+              <div class="form-outline" style="width: 5.7rem; display: inline-block;">
+                <label class="form-label" :for="'people-input-' + destination.id" style="white-space: nowrap; margin: 0 auto;">Počet ľudí:</label>
+                <input v-model="people" min="1" max="5" type="number" class="form-control" :id="'people-input-' + destination.id" name="people" />
+              </div>
+              <router-link to="/sluzby" @click="saveSelectedDestination(destination)" class="btn btn-success dest_tlacidlo">Rezervovať a vybrať služby</router-link>
             </div>
-            <button @click="saveSelectedDestination" class="btn btn-success dest_tlacidlo">Rezervovať a vybrať služby</button>
           </div>
         </div>
       </div>
@@ -47,43 +49,46 @@
   <br>
 </template>
 
+
 <script lang="ts">
-export default {
-  props: {
-    id: {
-      type: String,
-      default: '0',
-    },
-    name: {
-      type: String,
-      default: 'Neznáma destinácia',
-    },
-    image: String,
-    prices: {
-      type: Array,
-      default: () => [],
-    },
-  },
-  data() {
-    return {
-      people: 1,
+import { defineComponent, ref, onMounted } from 'vue';
+
+export default defineComponent({
+  setup() {
+    const destinations = ref<any[]>([]);
+    const people = ref(1);
+
+    const loadDestinations = async () => {
+      try {
+        const response = await fetch('/src/data_output.json');
+        const data = await response.json();
+        destinations.value = data.destinations;
+      } catch (error) {
+        console.error("Error loading destinations:", error);
+      }
     };
-  },
-  methods: {
-    saveSelectedDestination() {
-      const prices = Array.isArray(this.prices) ? this.prices : [];
-      const selectedPrice = prices[this.people - 1] || prices[0] || 0;
+
+    onMounted(() => {
+      loadDestinations();
+    });
+
+    const saveSelectedDestination = (destination: any) => {
+      const selectedPrice = destination.prices[people.value - 1] || destination.prices[0] || 0;
       const finalPrice = typeof selectedPrice === 'number' ? selectedPrice : 0;
 
       localStorage.setItem('selectedDestination', JSON.stringify({
-        id: this.id,
-        name: this.name,
+        id: destination.id,
+        name: destination.name,
         price: finalPrice,
-        people: this.people,
+        people: people.value,
       }));
+    };
 
-      this.$router.push({ name: 'sluzby' });
-    },
+    return {
+      destinations,
+      people,
+      saveSelectedDestination,
+    };
   },
-};
+});
 </script>

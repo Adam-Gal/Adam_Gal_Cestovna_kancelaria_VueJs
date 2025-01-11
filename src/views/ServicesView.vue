@@ -22,6 +22,11 @@ import Services from "@/components/Services.vue";
 import HeadingText from "@/components/HeadingText.vue";
 
 export default {
-  components: { Header, Footer, Services, HeadingText },
+  components: {
+    Header,
+    Footer,
+    Services,
+    HeadingText
+  },
 };
 </script>

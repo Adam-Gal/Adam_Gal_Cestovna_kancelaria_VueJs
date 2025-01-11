@@ -1,0 +1,228 @@
+{
+  "hot-destinations": [
+    {
+      "name": "Bali",
+      "image": "img/img2.jpg",
+      "description": "Kultúrne poklady a harmonická atmosféra vytvárajú ideálnu dovolenkovú oázu. Bali je miestom, kde sa stretáva prírodná krása s kultúrnym bohatstvom, ponúkajúc nezabudnuteľné zážitky pre váš oddych a zážitky."
+    },
+    {
+      "name": "Egypt",
+      "image": "img/img3.jpg",
+      "description": "Piesočné pláže pri tyrkysovo modrom mori vytvárajú dokonalý ráj pre oddych. Egypt je miestom, kde sa stretáva moderný luxus s historickým pokladom, ponúkajúc nezabudnuteľné zážitky a relaxáciu v jednom."
+    },
+    {
+      "name": "Kanárske ostrovy",
+      "image": "img/img4.jpg",
+      "description": "Oáza pod slnkom a modrým nebom Atlantiku. Zlatisté pláže, ktoré omýva príjemné teplo oceánu, tvoria dokonalé miesto na oddych. Kanárske ostrovy sú miestom, vytvárajúc ideálny raj pre oddych a objavovanie."
+    }
+  ],
+  "carousel_images": [
+    "/img/kontakt/img1.jpg",
+    "/img/kontakt/img2.jpg",
+    "/img/kontakt/img3.jpg"
+  ],
+  "address": {
+    "street": "Bratislavská 29",
+    "zip": "949 01",
+    "city": "Nitra",
+    "mapUrl": "https://www.google.sk/maps/place/Bratislavsk%C3%A1+29,+949+01+Nitra/@48.3145157,18.0592887,17z/data=!3m1!4b1!4m6!3m5!1s0x476b3f140c555685:0x241b1a01a40bb4cd!8m2!3d48.3145122!4d18.0618636!16s%2Fg%2F11vl3939l6?hl=sk&entry=ttu"
+  },
+  "contact": [
+    {
+      "who": "Manažér",
+      "email": "manazer@vias.sk",
+      "tel": "0904 372 965"
+    },
+    {
+      "who": "Riaditeľ",
+      "email": "riaditel@vias.sk",
+      "tel": "0904 386 764"
+    },
+    {
+      "who": "Call Centrum",
+      "email": "dovolenka@vias.sk",
+      "tel": "0903 752 184"
+    }
+  ],
+  "articles": [
+    {
+      "image": "img/img5.jpg",
+      "title": "Otvárame Krídla ku Slnečnému Ostrovu: Nová Destinácia Cyprus!",
+      "content": "S ďalším letom naša cestovná spoločnosť prináša vzrušujúce správy - Cyprus, ostrov kontrastov a krásy, sa stáva našou najnovšou destináciou! Otvárame novú trasu, ktorá spája cestujúcich so slnečným pobrežím a pútavou históriou tejto jedinečnej krajiny. Zarezervujte si svoje letenky a pripravte sa na dobrodružstvo na Slnečnom Ostrove! Letisko na Cyprus je teraz otvorené pre vás, aby ste objavili kúzlo tohto jedinečného miesta. Nechajte sa unášať krásou a pohostinnosťou Cyprusu s našou cestovnou spoločnosťou!"
+    },
+    {
+      "image": "img/img6.jpg",
+      "title": "Malorka: Ostrov Slnečných Lúčov a Kultúrnych Pokladov",
+      "content": "V srdci Stredozemného mora sa rozprestiera Malorka, jedinečný ostrov plný krásnych scenérií, vôní citrusových sadov a pútavého kultúrneho dedičstva. Dnes sa pozrieme na čaro tohto ostrova, ktorý prilákal pozornosť cestovateľov svojou nezameniteľnou atmosférou a bohatou ponukou zážitkov. Pláže ponúkajú nielen oddych, ale aj rôzne vodné športy. Cyklistika, golfovanie a výlety na lodi sú len niektoré z možností pre športových nadšencov. Pre milovníkov nočného života sú tu moderné kluby a tradičné taverny, kde sa môžete pohrávať s taktmi flamenka."
+    },
+    {
+      "image": "img/img7.jpg",
+      "title": "Cestovanie mimo Tradičných Turistických Destinácií",
+      "content": "Cestovanie je ako fascinujúci príbeh, ktorý sa odvíja na stránkach sveta. Často sa však stáva, že sa zameriavame iba na veľké metropoly a populárne turistické destinácie, pričom prehliadame malé mestečká, ktoré ukrývajú svoje vlastné tajomstvá a pôvab. Ak túžite po nezabudnuteľnom dobrodružstve, oddiaľte sa od hlučných davov a objavte krásy sveta v tých najmenších zákutiach.Cestovanie do malých mestečiek neznamená nutne obetovať pohodlie. Mnohé z týchto destinácií poskytujú útulné penzióny a malebné hotely, ktoré sú pripravené privítať cestovateľov so všetkým pohodlím a pohostinnosťou."
+    }
+  ],
+  "services": [
+    {
+      "name": "Rezervácia leteniek",
+      "details": [
+        "Medzinárodné lety",
+        "Vnútroštátne lety",
+        "Last-minute ponuky"
+      ],
+      "price": 20,
+      "isSelected": false
+    },
+    {
+      "name": "Rezervácia ubytovania",
+      "details": [
+        "Hotely",
+        "Apartmány",
+        "Hostely",
+        "Rezervácia dovolenkových domov"
+      ],
+      "price": 20,
+      "isSelected": false
+    },
+    {
+      "name": "Zabezpečenie prepravy",
+      "details": [
+        "Autopožičovňa",
+        "Transfer z letiska",
+        "MHD v cieľovej destinácii"
+      ],
+      "price": 35,
+      "isSelected": false
+    },
+    {
+      "name": "Turistické balíčky",
+      "details": [
+        "Výlety a exkurzie",
+        "Skupinové a individuálne zájazdy",
+        "Kultúrne a dobrodružné programy"
+      ],
+      "price": 250,
+      "isSelected": false
+    },
+    {
+      "name": "Dodatočné poistenie",
+      "details": [
+        "Cestovné poistenie",
+        "Zdravotné poistenie",
+        "Poistenie zrušenia"
+      ],
+      "price": 100,
+      "isSelected": false
+    },
+    {
+      "name": "Víza a iné formality",
+      "details": [
+        "Pomoc s vízami",
+        "Iné povinné formality"
+      ],
+      "price": 50,
+      "isSelected": false
+    },
+    {
+      "name": "Technická podpora",
+      "details": [
+        "24/7 zákaznícka podpora",
+        "Mobilné aplikácie a informačné systémy pre zákazníkov"
+      ],
+      "price": 20,
+      "isSelected": false
+    },
+    {
+      "name": "Event Management",
+      "details": [
+        "Organizácia konferencií a podujatí",
+        "Team-building akcie",
+        "Svadobné plánovanie destinácií"
+      ],
+      "price": 150,
+      "isSelected": false
+    },
+    {
+      "name": "Jazykové služby",
+      "details": [
+        "Priradenie sprievodcu v cudzom jazyku",
+        "Preklady dokumentov",
+        "Komunikačná asistencia"
+      ],
+      "price": 280,
+      "isSelected": false
+    },
+    {
+      "name": "Špeciálne služby pre firemných klientov",
+      "details": [
+        "Organizácia firemných ciest a team-buildingov",
+        "Zabezpečenie konferenčných priestorov"
+      ],
+      "price": 150,
+      "isSelected": false
+    },
+    {
+      "name": "Kultúrne zážitky",
+      "details": [
+        "Rezervácie v reštauráciách",
+        "Kultúrne podujatia a festivaly"
+      ],
+      "price": 50,
+      "isSelected": false
+    },
+    {
+      "name": "VIP služby",
+      "details": [
+        "Prémiové lety a ubytovanie",
+        "Exkluzívne zážitky a služby"
+      ],
+      "price": 500,
+      "isSelected": false
+    }
+  ],
+  "destinations": [
+    {
+      "id": "bali",
+      "name": "Bali",
+      "image": "img/img2.jpg",
+      "description": "Kultúrne poklady a harmonická atmosféra vytvárajú ideálnu dovolenkovú oázu. Bali je miestom, kde sa stretáva prírodná krása s kultúrnym bohatstvom, ponúkajúc nezabudnuteľné zážitky pre váš oddych a zážitky.",
+      "prices": [500, 900, 1350, 1700, 2100]
+    },
+    {
+      "id": "egypt",
+      "name": "Egypt",
+      "image": "img/img3.jpg",
+      "description": "Piesočné pláže pri tyrkysovo modrom mori vytvárajú dokonalý ráj pre oddych. Egypt je miestom, kde sa stretáva moderný luxus s historickým pokladom, ponúkajúc nezabudnuteľné zážitky a relaxáciu v jednom.",
+      "prices": [450, 800, 1200, 1500, 1850]
+    },
+    {
+      "id": "kanarske",
+      "name": "Kanárske ostrovy",
+      "image": "img/img4.jpg",
+      "description": "Oáza pod slnkom a modrým nebom Atlantiku. Zlatisté pláže, ktoré omýva príjemné teplo oceánu, tvoria dokonalé miesto na oddych. Kanárske ostrovy sú miestom, vytvárajúc ideálny raj pre oddych a objavovanie.",
+      "prices": [600, 950, 1400, 1750, 2200]
+    },
+    {
+      "id": "cyprus",
+      "name": "Cyprus",
+      "image": "img/img5.jpg",
+      "description": "Ostrov s krásnymi plážami a bohatou históriou, ktorý ponúka ideálne miesto pre oddych a objavovanie starovekých pamiatok. Cyprus je miestom, kde sa spájajú kultúra, príroda a relaxácia.",
+      "prices": [700, 1400, 1950, 2400, 2800]
+    },
+    {
+      "id": "hawai",
+      "name": "Hawai",
+      "image": "img/img6.jpg",
+      "description": "Tropický raj so zelenými horami, bielymi plážami a teplým morom. Hawai ponúka neskutočné prírodné krásy a dobrodružstvo pre každého, kto túži po nezabudnuteľnom zážitku.",
+      "prices": [1000, 1800, 2600, 3400, 4100]
+    },
+    {
+      "id": "malorka",
+      "name": "Malorka",
+      "image": "img/img7.jpg",
+      "description": "Malorka je ostrov slnečných lúčov a kultúrnych pokladov, ktorý sa nachádza v Stredozemnom mori. Svojimi krásnymi plážami, bohatou históriou a jedinečnou atmosférou je ideálnym miestom na oddych a zábavu.",
+      "prices": [350, 600, 1000, 1600, 2100]
+    }
+  ]
+}
+
+

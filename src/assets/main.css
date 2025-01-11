@@ -265,6 +265,7 @@ body
     font-size: 1.5cap;
     width: 200%;
     padding: 20px;
+    margin-top: 10px;
   }
   .clanok
   {
@@ -275,7 +276,7 @@ body
     padding: 10px;
     background-color: white;
     border-radius: 10px;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
   }
   .formular
   {
@@ -390,6 +391,7 @@ body
   padding: 25px;
   background-color: white;
   border-radius: 20px;
+  margin: 20px;
 }
 
 .adresa
@@ -401,6 +403,7 @@ body
 {
   white-space: nowrap;
   font-size: 20px;
+  margin: 5px 0;
 }
 
 .cookie-consent{
@@ -519,11 +522,13 @@ body
 .email_tel
 {
   white-space: nowrap;
+  margin: 5px 0;
 }
 
 .kto
 {
-  margin-bottom: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .formular_pozadie
