@@ -49,46 +49,38 @@
   <br>
 </template>
 
-
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
-  setup() {
-    const destinations = ref<any[]>([]);
-    const people = ref(1);
-
-    const loadDestinations = async () => {
+  data() {
+    return {
+      destinations: [] as { id: string; name: string; image: string; prices: number[] }[], // Inline typing
+      people: 1,
+    };
+  },
+  mounted() {
+    this.loadDestinations();
+  },
+  methods: {
+    async loadDestinations() {
       try {
         const response = await fetch('/src/data_output.json');
         const data = await response.json();
-        destinations.value = data.destinations;
+        this.destinations = data.destinations;
       } catch (error) {
         console.error("Error loading destinations:", error);
       }
-    };
-
-    onMounted(() => {
-      loadDestinations();
-    });
-
-    const saveSelectedDestination = (destination: any) => {
-      const selectedPrice = destination.prices[people.value - 1] || destination.prices[0] || 0;
-      const finalPrice = typeof selectedPrice === 'number' ? selectedPrice : 0;
-
+    },
+    saveSelectedDestination(destination: { id: string; name: string; prices: number[] }) {
+      const selectedPrice = destination.prices[this.people - 1] || destination.prices[0] || 0;
       localStorage.setItem('selectedDestination', JSON.stringify({
         id: destination.id,
         name: destination.name,
-        price: finalPrice,
-        people: people.value,
+        price: selectedPrice,
+        people: this.people,
       }));
-    };
-
-    return {
-      destinations,
-      people,
-      saveSelectedDestination,
-    };
+    },
   },
 });
 </script>

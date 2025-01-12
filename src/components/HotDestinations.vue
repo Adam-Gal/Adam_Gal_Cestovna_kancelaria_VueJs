@@ -36,36 +36,26 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue';
-
-export interface Destination {
-  name: string;
-  image: string;
-  description: string;
-}
-
-export default defineComponent({
+export default {
   name: 'Destinations',
-  setup() {
-    const destinations = ref<Destination[]>([]);
-
-    const fetchDestinations = async () => {
+  data() {
+    return {
+      destinations: [] as { name: string, image: string, description: string }[], // Explicit typing
+    };
+  },
+  methods: {
+    async fetchDestinations() {
       try {
         const response = await fetch('/src/data_output.json');
         const data = await response.json();
-        destinations.value = data['hot-destinations'];
+        this.destinations = data['hot-destinations'];
       } catch (error) {
         console.error('Chyba pri načítaní JSON súboru:', error);
       }
-    };
-
-    onMounted(() => {
-      fetchDestinations();
-    });
-
-    return {
-      destinations,
-    };
+    },
   },
-});
+  mounted() {
+    this.fetchDestinations();
+  },
+};
 </script>

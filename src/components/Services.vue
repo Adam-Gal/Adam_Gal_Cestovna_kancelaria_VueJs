@@ -36,17 +36,15 @@
     </table>
     <div v-if="selectedDestination">
       <h3>Celková cena: {{ totalPrice }}€</h3>
-      <button @click="addToCart" class="btn btn-success mt-3" :disabled="!selectedDestination">
+      <router-link to="/kosik" @click="addToCart" class="btn btn-success mt-3" :disabled="!selectedDestination">
         Pridať do košíka
-      </button>
+      </router-link>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { useCartStore } from '@/stores/cart';
-import { defineComponent } from 'vue';
-import { useRouter } from 'vue-router'; // Import useRouter
 
 export interface Service {
   name: string;
@@ -55,7 +53,7 @@ export interface Service {
   isSelected: boolean;
 }
 
-export default defineComponent({
+export default {
   data() {
     return {
       hasConsent: localStorage.getItem("cookieConsent") === "true",
@@ -71,7 +69,6 @@ export default defineComponent({
           total += service.price;
         }
       });
-
       return total.toFixed(2);
     },
   },
@@ -118,8 +115,6 @@ export default defineComponent({
       });
 
       this.resetSelection();
-      const router = useRouter(); // Use the useRouter hook
-      router.push({ name: 'kosik' });
     },
     resetSelection() {
       localStorage.removeItem('selectedDestination');
@@ -130,5 +125,5 @@ export default defineComponent({
     await this.fetchServices();
     if (this.hasConsent) this.loadServicesFromCookies();
   }
-});
+};
 </script>

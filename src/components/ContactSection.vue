@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue';
+import { defineComponent } from 'vue';
 import Carousel from "@/components/Carousel.vue";
 
 export interface Address {
@@ -44,35 +44,31 @@ export interface Contact {
 
 export default defineComponent({
   components: { Carousel },
-  setup() {
-    const address = ref<Address>({
-      street: "",
-      zip: "",
-      city: "",
-      mapUrl: "",
-    });
-
-    const contact = ref<Contact[]>([]);
-
-    const fetchData = async () => {
+  data() {
+    return {
+      address: {
+        street: "",
+        zip: "",
+        city: "",
+        mapUrl: "",
+      } as Address,
+      contact: [] as Contact[],
+    };
+  },
+  mounted() {
+    this.fetchData();
+  },
+  methods: {
+    async fetchData() {
       try {
         const response = await fetch('/src/data_output.json');
         const data = await response.json();
-        address.value = data.address;
-        contact.value = data.contact;
+        this.address = data.address;
+        this.contact = data.contact;
       } catch (error) {
         console.error('Chyba pri načítaní JSON súboru:', error);
       }
-    };
-
-    onMounted(() => {
-      fetchData();
-    });
-
-    return {
-      address,
-      contact,
-    };
+    },
   },
 });
 </script>

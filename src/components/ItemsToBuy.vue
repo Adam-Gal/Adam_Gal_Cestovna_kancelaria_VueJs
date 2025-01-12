@@ -26,7 +26,7 @@
       </tr>
       </tbody>
     </table>
-    <div v-if="cartItems.length" class="text-center mt-4">
+    <div v-if="cartItems.length && !showOrderForm" class="text-center mt-4">
       <button @click="clearCart" class="btn btn-danger">Vyprázdniť košík</button>
       <button @click="showOrderForm = !showOrderForm" class="btn btn-success ms-3">Objednať</button>
     </div>
@@ -50,6 +50,9 @@
           <label for="phone" class="form-label">Telefónne číslo</label>
           <input type="tel" class="form-control" id="phone" v-model="personalInfo.phone" required />
         </div>
+        <div v-if="formError" class="alert alert-danger">
+          Prosím, vyplňte všetky povinné polia.
+        </div>
         <div class="text-center">
           <button type="submit" class="btn btn-primary">Dokončiť objednávku</button>
         </div>
@@ -59,47 +62,64 @@
 </template>
 
 <script lang="ts">
-import { ref, onMounted } from 'vue';
 import { useCartStore } from '@/stores/cart';
-import { useRouter } from 'vue-router';
 
 export default {
-  setup() {
-    const router = useRouter();
-    const cartStore = useCartStore();
-    const cartItems = ref(cartStore.items);
-    const showOrderForm = ref(false);
-    const personalInfo = ref({
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-    });
-
-    onMounted(() => {
-      cartStore.loadCartFromLocalStorage();
-      cartItems.value = cartStore.items;
-    });
-
-    const clearCart = () => {
-      cartStore.clearCart();
-      cartItems.value = [];
-    };
-
-    const submitOrder = () => {
-      showOrderForm.value = false;
-      clearCart();
-      personalInfo.value = { firstName: '', lastName: '', email: '', phone: '' };
-      router.push({ name: 'thankyou', params: { text: 'Ďakujeme za objednávku', link: '/kosik' } });
-    };
-
+  data() {
     return {
-      cartItems,
-      clearCart,
-      showOrderForm,
-      personalInfo,
-      submitOrder,
+      cartItems: [] as {
+        id: string;
+        name: string;
+        people: number;
+        services?: string[];
+        price: number;
+      }[],
+      showOrderForm: false,
+      personalInfo: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+      },
+      formError: false,
     };
+  },
+  mounted() {
+    const cartStore = useCartStore();
+    cartStore.loadCartFromLocalStorage();
+    this.cartItems = cartStore.items;
+  },
+  methods: {
+    clearCart() {
+      const cartStore = useCartStore();
+      cartStore.clearCart();
+      this.cartItems = [];
+    },
+    validateForm() {
+      return (
+          this.personalInfo.firstName &&
+          this.personalInfo.lastName &&
+          this.personalInfo.email &&
+          this.personalInfo.phone
+      );
+    },
+    submitOrder() {
+      if (!this.validateForm()) {
+        this.formError = true;
+        return;
+      }
+      this.formError = false;
+      this.$router.push({
+        path: '/thankyou',
+        query: {
+          prepojenie: '/kosik',
+          nadpis: 'Ďakujeme za objednávku',
+        },
+      });
+      this.showOrderForm = false;
+      this.clearCart();
+      this.personalInfo = { firstName: '', lastName: '', email: '', phone: '' };
+    },
   },
 };
 </script>

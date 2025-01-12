@@ -19,7 +19,6 @@ const router = createRouter({
       path: '/destinacie',
       name: 'destinacie',
       component: DestinationView,
-
     },
     {
       path: '/sluzby',
@@ -37,25 +36,23 @@ const router = createRouter({
       component: ShoppingCartView,
     },
     {
-      path: '/thankyou/:text/:link',
+      path: '/thankyou',
       name: 'thankyou',
-      component: () => import('@/views/ThankYouView.vue'),
-      props: true,
+      component: ThankYouView,
     },
     {
       path: '/:pathMatch(.*)*',
       name: 'notFound',
       component: () => import('@/views/404.vue'),
     }
-
   ],
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition;
     } else {
-      return { top: 0 };
+      return { top: 0, behavior: 'smooth' };
     }
-  },
-})
+  }
+});
 
-export default router
+export default router;

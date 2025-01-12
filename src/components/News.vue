@@ -13,7 +13,6 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue';
 
 interface Article {
   image: string;
@@ -21,27 +20,25 @@ interface Article {
   content: string;
 }
 
-export default defineComponent({
-  setup() {
-    const articles = ref<Article[]>([]);
-
-    const fetchArticles = async () => {
+export default {
+  data() {
+    return {
+      articles: [] as Article[], // Explicitly typing the articles array
+    };
+  },
+  mounted() {
+    this.fetchArticles();
+  },
+  methods: {
+    async fetchArticles() {
       try {
         const response = await fetch('/src/data_output.json');
         const data = await response.json();
-        articles.value = data.articles;
+        this.articles = data.articles;
       } catch (error) {
         console.error('Chyba pri načítaní článkov:', error);
       }
-    };
-
-    onMounted(() => {
-      fetchArticles();
-    });
-
-    return {
-      articles,
-    };
+    },
   },
-});
+};
 </script>
