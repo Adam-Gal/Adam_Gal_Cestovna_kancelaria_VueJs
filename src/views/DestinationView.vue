@@ -1,15 +1,13 @@
 <template>
-  <body>
-    <Header active="destinacie"></Header>
-    <br><br><br><br><br><br><br>
-    <div class="container">
-      <HeadingText nazov="Destinácie"/>
-      <br><br>
-      <h1 class="aktualne_destinacie">Aktuálne destinácie:</h1>
-      <DestinationCard></DestinationCard>
-    </div>
-    <Footer></Footer>
-  </body>
+  <Header active="destinacie"></Header>
+  <br><br><br><br><br><br><br>
+  <div class="container">
+    <HeadingText nazov="Destinácie"/>
+    <br><br>
+    <h1 class="aktualne_destinacie">Aktuálne destinácie:</h1>
+    <DestinationCard></DestinationCard>
+  </div>
+  <Footer></Footer>
 </template>
 
 <script lang="ts">

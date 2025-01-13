@@ -1,19 +1,12 @@
 <template>
-  <!DOCTYPE html>
-  <html lang="sk">
-    <body>
-      <Header active="kosik"></Header>
-      <br><br><br><br><br><br><br>
-      <div class="container">
-        <HeadingText nazov="Košík"></HeadingText>
-        <br><br><br>
-        <ItemsToBuy></ItemsToBuy>
-      </div>
-      <Footer></Footer>
-      <br><br>
-
-    </body>
-  </html>
+  <Header active="kosik"></Header>
+  <br><br><br><br><br><br><br>
+  <div class="container">
+    <HeadingText nazov="Košík"></HeadingText>
+    <br><br><br>
+    <ItemsToBuy></ItemsToBuy>
+  </div>
+  <Footer></Footer>
 </template>
 
 <script setup lang="ts">

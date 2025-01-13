@@ -1,18 +1,12 @@
 <template>
-  <!DOCTYPE html>
-  <html lang="sk">
-    <body>
-      <Header active="sluzby"></Header>
-      <div class="container">
-        <br><br><br><br><br><br><br>
-        <HeadingText nazov="Služby"/>
-        <br><br><br><br>
-        <Services></Services>
-      </div>
-      <Footer></Footer>
-      <br><br>
-    </body>
-  </html>
+  <Header active="sluzby"></Header>
+  <div class="container">
+    <br><br><br><br><br><br><br>
+    <HeadingText nazov="Služby"/>
+    <br><br><br><br>
+    <Services></Services>
+  </div>
+  <Footer></Footer>
 </template>
 
 <script lang="ts">
