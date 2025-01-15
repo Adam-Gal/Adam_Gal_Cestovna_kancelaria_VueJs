@@ -1,17 +1,19 @@
 <template>
-  <Header active="domov"></Header>
-  <img :src="'/img/img1.jpg'" alt="úvodný obrázok" class="pozadie bg-image">
-  <br><br><br><br><br><br><br>
-  <div class="container z-1">
-    <HeadingText nazov="Cestovná kancelária Vias"/>
-    <br><br><br>
-    <HotDestinations></HotDestinations>
-    <br><br><br><br>
-    <h1 id="novinky">Novinky:</h1>
-    <News></News>
-    <CookieConsent></CookieConsent>
-  </div>
-  <Footer></Footer>
+  <body>
+    <Header active="domov"></Header>
+    <img :src="'/img/img1.jpg'" alt="úvodný obrázok" class="pozadie bg-image">
+    <br><br><br><br><br><br><br>
+    <div class="container z-1">
+      <HeadingText nazov="Cestovná kancelária Vias"/>
+      <br><br><br>
+      <HotDestinations></HotDestinations>
+      <br><br><br><br>
+      <h1 id="novinky">Novinky:</h1>
+      <News></News>
+      <CookieConsent></CookieConsent>
+    </div>
+    <Footer></Footer>
+  </body>
 </template>
 
 <script lang="ts">
